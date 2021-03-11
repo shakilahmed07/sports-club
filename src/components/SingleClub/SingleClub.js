@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const SingleClub = (props) => {
-  const { idLeague, strSport, strLeague } = props.team;
+  const { idLeague, strSport, strLeague } = props.detail;
   const history = useHistory();
 
   return (

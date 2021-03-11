@@ -1,45 +1,60 @@
-import React from "react";
-import Rectangle from "../Photo/Rectangle-28.png";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFlag,
+  faFutbol,
+  faMars,
+  faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
+
 const ClubDetails = () => {
+  const { idLeague } = useParams({});
+
+  const [detail, setDetail] = useState({});
+
+  useEffect(() => {
+    fetch(
+      `https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=${idLeague}`
+    )
+      .then((res) => res.json())
+      .then((data) => setDetail(data.leagues[0]));
+  }, [idLeague]);
   return (
     <div className="bg-dark py-5">
-      <div className="container text-white my-5">
+      <div className="container text-white">
+        <img
+          className="img-fluid pb-5"
+          src={detail.strBanner}
+          alt={detail.strLeague}
+        />
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-8">
             <div>
-              <h2>Name</h2>
-              <p>Founded: {}</p>
-              <p>Country: {}</p>
-              <p>Sport Type:</p>
-              <p>Gender:</p>
+              <h2>{detail.strLeague}</h2>
+              <p>
+                <FontAwesomeIcon icon={faMapMarkerAlt} /> Founded:{" "}
+                {detail.intFormedYear}
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faFlag} /> Country: {detail.strCountry}
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faFutbol} /> Sport Type:{" "}
+                {detail.strSport}
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faMars} /> Gender: {detail.strGender}
+              </p>
             </div>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
+            <p>{detail.strDescriptionEN}</p>
           </div>
-          <div className="col-md-6">
-            <img className="img-fluid" src={Rectangle} alt="" />
+          <div className="col-md-4">
+            <img
+              className="img-fluid"
+              src="https://linkpicture.com/q/male.png"
+              alt=""
+            />
           </div>
         </div>
       </div>
@@ -49,4 +64,6 @@ const ClubDetails = () => {
 
 export default ClubDetails;
 
-// https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=4328
+// male : https://linkpicture.com/q/male.png
+// female : https://linkpicture.com/q/female.png
+// rectangle : https://linkpicture.com/q/Rectangle-28.png

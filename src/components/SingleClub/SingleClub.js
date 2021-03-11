@@ -1,9 +1,11 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const SingleClub = (props) => {
-  const { idLeague, strSport, strLeague } = props.movie;
+  const { idLeague, strSport, strLeague } = props.team;
   const history = useHistory();
 
   return (
@@ -14,10 +16,10 @@ const SingleClub = (props) => {
             <Card.Title>{strLeague}</Card.Title>
             <p>Sports type : {strSport}</p>
             <Button
-              onClick={() => history.push(`/movie/${idLeague}`)}
+              onClick={() => history.push(`/club/${idLeague}`)}
               variant="primary"
             >
-              Explore
+              Explore <FontAwesomeIcon icon={faArrowRight} />
             </Button>
           </div>
         </Card.Body>

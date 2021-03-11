@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import SingleMovie from "../SingleClub/SingleClub";
+import SingleClub from "../SingleClub/SingleClub";
 
 const Club = () => {
-  const [movies, setMovies] = useState([]);
-  //   const apiKey = "870967436c1517d581daf3b245495790";
+  const [clubs, setClubs] = useState([]);
 
   useEffect(() => {
     fetch(`https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`)
       .then((res) => res.json())
-      .then((data) => setMovies(data.leagues));
+      .then((data) => setClubs(data.leagues));
   }, []);
-
   return (
-    <div className="container mt-5">
-      <div className="row">
-        {movies.map((movie) => (
-          <SingleMovie key={movie.id} movie={movie} />
-        ))}
+    <div className="bg-dark py-5">
+      <div className="container mt-5">
+        <div className="row">
+          {clubs.map((team) => (
+            <SingleClub key={team.id} team={team} />
+          ))}
+        </div>
       </div>
     </div>
   );

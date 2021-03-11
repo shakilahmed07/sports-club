@@ -2,4 +2,4 @@
 
 ### Deployment
 
-Live Site Link here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Live Site Link here: [https://sports-club.netlify.app/](https://sports-club.netlify.app/)
